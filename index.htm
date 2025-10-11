@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revita Photo Restore - AI-Powered Photo Enhancement</title>
+    <meta name="description" content="Transform your old and damaged photos with AI-powered restoration. Enhance, restore, and colorize your precious memories with professional-grade technology.">
+    <meta name="keywords" content="photo restoration, AI photo enhancement, photo repair, image colorization, face restore, noise reduction">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #000000 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .features {
+            background: white;
+            padding: 4rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .feature-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .demo-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .pricing {
+            background: white;
+            padding: 4rem 0;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 3px solid #ff6b6b;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .pricing-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .download-badge {
+            display: inline-block;
+            margin: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .download-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .download-badge img {
+            height: 60px;
+            border-radius: 10px;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">📸 Revita Photo Restore</a>
+                <nav class="nav-links">
+                    <a href="#features">Features</a>
+                    <!-- <a href="#demo">Demo</a> -->
+                    <!-- <a href="#pricing">Pricing</a> -->
+                    <a href="#download">Download</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Revive Your Precious Memories</h1>
+                <p>Transform old, damaged, or low-quality photos with cutting-edge AI technology. Restore faces, enhance resolution, reduce noise, and bring your memories back to life.</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">8+</div>
+                        <p>AI Enhancement Tools</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <p>Free Daily Generations</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">⭐⭐⭐⭐⭐</div>
+                        <p>User Rating</p>
+                    </div>
+                </div>
+
+                <a href="https://play.google.com/store/apps/details?id=com.aime.photoenhance" class="cta-button" target="_blank">
+                    📱 Download Free on Google Play
+                </a>
+            </div>
+        </section>
+
+        <div class="container">
+            <section id="features" class="features">
+                <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #2c3e50;">✨ Powerful AI Features</h2>
+                <p style="text-align: center; color: #7f8c8d; margin-bottom: 2rem;">Professional-grade photo restoration powered by advanced machine learning</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📸</div>
+                        <h3>Photo Enhance</h3>
+                        <p>Improve overall image quality, sharpness, and clarity with AI-powered enhancement algorithms.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">👤</div>
+                        <h3>Face Restore</h3>
+                        <p>Repair damaged or blurry faces in old photographs using advanced facial recognition AI.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔇</div>
+                        <h3>Noise Reduction</h3>
+                        <p>Remove grain, noise, and artifacts from images while preserving important details.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Deblurring</h3>
+                        <p>Fix motion blur and out-of-focus images with intelligent blur correction technology.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📏</div>
+                        <h3>Super Resolution</h3>
+                        <p>Upscale images up to 4x while maintaining crisp details and natural appearance.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Colorization</h3>
+                        <p>Bring black & white photos to life with AI-powered intelligent colorization.</p>
+                    </div>
+                </div>
+            </section>
+
+        <section id="download" class="download-section">
+            <div class="container">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">📲 Download Now</h2>
+                <p style="margin-bottom: 2rem; opacity: 0.9;">Start transforming your photos today with powerful AI technology</p>
+                
+                    <button class="cta-button" type="button" onclick="window.open('https://play.google.com/store/apps/details?id=com.aime.photoenhance', '_blank')">
+                        📱 Get it on Google Play
+                    </button>
+                
+                <div style="margin-top: 2rem;">
+                    <p>🔒 Secure & Private • 🚀 Fast Processing • 💫 AI-Powered</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Revita Photo Restore. Transform your memories with AI.</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7;">Built with ❤️ for photographers and memory keepers</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
