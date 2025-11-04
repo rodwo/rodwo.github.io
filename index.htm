@@ -321,6 +321,56 @@
                 transform: translateX(-50%) translateY(-5px);
             }
         }
+
+        .premium-restore {
+            width: 70%;
+            margin: 2rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .premium-restore img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Mobile: show half image (50% height) */
+        @media (max-width: 768px) {
+            .premium-restore img {
+                height: auto;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        /* Desktop: show cover image (full cover) */
+        @media (min-width: 769px) {
+            .premium-restore img {
+                height: auto;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        /* Tablet and larger screens */
+        @media (min-width: 769px) and (max-width: 1200px) {
+            .premium-restore img {
+                height: auto;
+                object-fit: cover;
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 1201px) {
+            .premium-restore img {
+                height: auto;
+                object-fit: cover;
+            }
+        }
     </style>
 </head>
 <body>
@@ -363,6 +413,14 @@
                     📱 Download Free on Google Play
                 </a>
             </div>
+        </section>
+
+        <section class="premium-restore">
+            <picture>
+                <source media="(max-width: 768px)" srcset="assets/images/premium-restore-half.jpg">
+                <source media="(min-width: 769px)" srcset="assets/images/premium-restore-cover.jpg">
+                <img src="assets/images/premium-restore-cover.jpg" alt="Premium Photo Restore Features">
+            </picture>
         </section>
 
         <div class="container">
