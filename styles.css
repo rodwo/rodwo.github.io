@@ -9,6 +9,46 @@
   --wide: 1216px;
   font-family: Geist, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
 }
+.header-inner { flex-wrap: wrap; padding-block: 14px; }
+.main-nav { margin-left: auto; }
+.language-switch { display: flex; gap: 4px; font-size: 12px; }
+.language-switch a { padding: 8px; border: 1px solid transparent; border-radius: 6px; color: var(--muted); white-space: nowrap; }
+.language-switch a[aria-current="page"] { color: var(--accent); background: #ffc36512; border-color: #ffc36555; }
+.language-switch a:hover, .footer-privacy:hover { color: var(--accent); }
+.footer-inner { flex-wrap: wrap; padding-block: 18px; }
+.footer-privacy { margin-left: auto; color: var(--muted); font-size: 13px; }
+.policy { max-width: 840px; padding-block: 44px 72px; }
+.back-link { color: var(--accent); font-size: 14px; }
+.policy h1 { font-size: clamp(36px, 6vw, 64px); letter-spacing: -.045em; margin-block: 27px 16px; }
+.policy-date { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
+.policy section { border-top: 1px solid var(--line); padding-block: 24px; }
+.policy h2 { font-size: clamp(22px, 3vw, 28px); line-height: 1.4; margin: 0 0 14px; letter-spacing: -.025em; }
+.policy section p { color: var(--muted); line-height: 1.95; margin: 0; }
+.policy-links { margin: 18px 0 0; padding-left: 22px; line-height: 2.2; }
+.policy-links a { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
+html[lang="en"] .hero { grid-template-columns: 1fr 1fr; }
+html[lang="en"] h1 { font-size: clamp(46px, 5.3vw, 76px); letter-spacing: -.06em; }
+html[lang="en"] h3 { font-size: clamp(18px, 1.65vw, 23px); }
+@media (max-width: 1100px) {
+  .header-inner { gap: 8px 16px; }
+  .language-switch { margin-left: auto; }
+  .main-nav { gap: 14px; }
+}
+@media (max-width: 760px) {
+  .language-switch { width: 100%; justify-content: flex-end; border-top: 1px solid var(--line); padding-top: 6px; }
+  .site-header { position: relative; }
+  html[lang="en"] .hero { grid-template-columns: 1fr; }
+  html[lang="en"] h1 { font-size: clamp(44px, 10vw, 70px); }
+  .policy { padding-top: 30px; }
+}
+@media (max-width: 430px) {
+  .header-inner .brand { font-size: 22px; gap: 7px; }
+  .header-inner .brand-mark { width: 28px; height: 28px; }
+  .main-nav { font-size: 12px; gap: 10px; }
+  .main-nav .store-nav { padding: 8px; }
+  .footer-inner .brand { width: 100%; }
+  .footer-privacy { margin-left: 0; }
+}
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 94px; }
 body { margin: 0; background: var(--bg); color: var(--text); }
